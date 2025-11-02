@@ -1,0 +1,9 @@
+build_deb:
+  image: debian:bullseye
+  before_script:
+    - apt update && apt install -y devscripts build-essential debhelper dh-make golang-go python3
+  script:
+    - dpkg-buildpackage -us -uc -b
+  artifacts:
+    paths:
+      - ../*.deb
